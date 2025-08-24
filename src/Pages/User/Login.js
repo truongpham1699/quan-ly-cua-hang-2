@@ -1,6 +1,6 @@
 // src/User/Login.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { login } from "../../Service/Service";
 
 export default function Login() {
@@ -8,16 +8,20 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get("redirect") || "/";
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const user = await login(username, password); // ✅ service trả về user
+            const user = await login(username, password);
             setError("");
+
             if (user.role === "admin") {
-                navigate("/admin/products"); // Quản lý sản phẩm
+                navigate("/admin/products"); // Admin về quản lý khi đăng nhập
             } else {
-                navigate("/"); // Người dùng
+                navigate(redirect); // Mua ngay ở ProductDetail đăng nhập xong về la chỗ đó
             }
         } catch (err) {
             setError(err.message);

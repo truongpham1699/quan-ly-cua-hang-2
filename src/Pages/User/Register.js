@@ -34,34 +34,31 @@ export default function Register() {
             <form onSubmit={handleRegister}>
                 <div className="mb-3">
                     <label className="form-label">Họ và tên</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
+                    <input type="text"
+                           className="form-control"
+                           value={name}
+                           onChange={(e) => setName(e.target.value)}
+                           required
                     />
                 </div>
 
                 <div className="mb-3">
                     <label className="form-label">Tên đăng nhập</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
+                    <input type="text"
+                           className="form-control"
+                           value={username}
+                           onChange={(e) => setUsername(e.target.value)}
+                           required
                     />
                 </div>
 
                 <div className="mb-3">
                     <label className="form-label">Mật khẩu</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
+                    <input type="password"
+                           className="form-control"
+                           value={password}
+                           onChange={(e) => setPassword(e.target.value)}
+                           required
                     />
                 </div>
 

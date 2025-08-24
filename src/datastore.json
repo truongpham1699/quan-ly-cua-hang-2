@@ -22,8 +22,8 @@
       "role": "user"
     },
     {
-      "id": "9abc",
-      "name": "Phạm Quốc Trường",
+      "id": "93e8",
+      "name": "Trường",
       "username": "truong166",
       "password": "16061999",
       "role": "user"
@@ -44,7 +44,7 @@
       "name": "Điện thoại iPhone 15 Pro",
       "description": "Điện thoại flagship của Apple, chip A17 Bionic",
       "price": 35000000,
-      "stock": 8,
+      "stock": 4,
       "createdBy": "u1",
       "createdAt": "2024-07-02T10:30:00.000Z"
     },
@@ -53,7 +53,7 @@
       "name": "Chuột Logitech MX Master 3S",
       "description": "Chuột không dây cao cấp, pin trâu, hỗ trợ đa thiết bị",
       "price": 2500000,
-      "stock": 10,
+      "stock": 14,
       "createdBy": "u1",
       "createdAt": "2024-07-03T14:00:00.000Z"
     },
@@ -65,6 +65,13 @@
       "stock": 12,
       "createdBy": "u1",
       "createdAt": "2024-07-04T09:15:00.000Z"
+    },
+    {
+      "id": "5e94",
+      "name": "RX-178 Gundam Mk-II ",
+      "description": "Phiên bản phe AEUG - Tỉ lệ 1/144",
+      "price": 680000,
+      "stock": 10
     }
   ],
   "orders": [
@@ -119,34 +126,6 @@
       ],
       "status": "delivered",
       "createdAt": "2024-07-08T15:20:00.000Z"
-    },
-    {
-      "id": "d568",
-      "userId": "9abc",
-      "items": [
-        {
-          "productId": "p1",
-          "name": "Laptop Dell XPS 13",
-          "price": 32000000,
-          "quantity": 2
-        }
-      ],
-      "status": "delivered",
-      "createdAt": "2025-08-22T13:08:36.850Z"
-    },
-    {
-      "id": "2991",
-      "userId": "9abc",
-      "items": [
-        {
-          "productId": "p3",
-          "name": "Chuột Logitech MX Master 3S",
-          "price": 2500000,
-          "quantity": 5
-        }
-      ],
-      "status": "delivered",
-      "createdAt": "2025-08-22T13:19:43.371Z"
     }
   ]
 }

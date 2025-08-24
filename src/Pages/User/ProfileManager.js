@@ -35,25 +35,22 @@ export default function ProfileManager() {
                 <div className="card-body">
                     <div className="mb-3">
                         <label className="form-label">Tên</label>
-                        <input
-                            className="form-control"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
+                        <input className="form-control"
+                               value={name}
+                               onChange={e => setName(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Mật khẩu</label>
                         <div className="input-group">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                className="form-control"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
+                            <input type={showPassword ? "text" : "password"}
+                                   className="form-control"
+                                   value={password}
+                                   onChange={e => setPassword(e.target.value)}
                             />
-                            <button
-                                type="button"
-                                className="btn btn-outline-secondary"
-                                onClick={() => setShowPassword(!showPassword)}
+                            <button type="button"
+                                    className="btn btn-outline-secondary"
+                                    onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? "🙈" : "👁️"}
                             </button>

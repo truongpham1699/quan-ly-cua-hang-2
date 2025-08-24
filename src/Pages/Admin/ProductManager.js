@@ -1,12 +1,6 @@
 // src/Admin/ProductManager.js
 import React, { useEffect, useState } from "react";
-import {
-    getProducts,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    getCurrentUser,
-} from "../../Service/Service";
+import {getProducts, addProduct, updateProduct, deleteProduct, getCurrentUser,} from "../../Service/Service";
 
 export default function ProductManager() {
     const [products, setProducts] = useState([]);
@@ -91,51 +85,43 @@ export default function ProductManager() {
             <form onSubmit={handleAddProduct} className="mb-4">
                 <div className="row g-2">
                     <div className="col-md-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Tên sản phẩm"
-                            value={newProduct.name}
-                            onChange={(e) =>
-                                setNewProduct({ ...newProduct, name: e.target.value })
-                            }
-                            required
+                        <input type="text"
+                               className="form-control"
+                               placeholder="Tên sản phẩm"
+                               value={newProduct.name}
+                               onChange={(e) =>
+                                   setNewProduct({ ...newProduct, name: e.target.value })}
+                               required
                         />
                     </div>
                     <div className="col-md-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Mô tả"
-                            value={newProduct.description}
-                            onChange={(e) =>
-                                setNewProduct({ ...newProduct, description: e.target.value })
-                            }
-                            required
+                        <input type="text"
+                               className="form-control"
+                               placeholder="Mô tả"
+                               value={newProduct.description}
+                               onChange={(e) =>
+                                   setNewProduct({ ...newProduct, description: e.target.value })}
+                               required
                         />
                     </div>
                     <div className="col-md-2">
-                        <input
-                            type="number"
-                            className="form-control"
-                            placeholder="Giá"
-                            value={newProduct.price}
-                            onChange={(e) =>
-                                setNewProduct({ ...newProduct, price: e.target.value })
-                            }
-                            required
+                        <input type="number"
+                               className="form-control"
+                               placeholder="Giá"
+                               value={newProduct.price}
+                               onChange={(e) =>
+                                   setNewProduct({ ...newProduct, price: e.target.value })}
+                               required
                         />
                     </div>
                     <div className="col-md-2">
-                        <input
-                            type="number"
-                            className="form-control"
-                            placeholder="Tồn kho"
-                            value={newProduct.stock}
-                            onChange={(e) =>
-                                setNewProduct({ ...newProduct, stock: e.target.value })
-                            }
-                            required
+                        <input type="number"
+                               className="form-control"
+                               placeholder="Tồn kho"
+                               value={newProduct.stock}
+                               onChange={(e) =>
+                                   setNewProduct({ ...newProduct, stock: e.target.value })}
+                               required
                         />
                     </div>
                     <div className="col-md-2">
@@ -167,17 +153,15 @@ export default function ProductManager() {
                         <td>{p.price.toLocaleString()}</td>
                         <td>{p.stock}</td>
                         <td>
-                            <button
-                                className="btn btn-warning btn-sm me-2"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editModal"
-                                onClick={() => setEditingProduct(p)}
+                            <button className="btn btn-warning btn-sm me-2"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editModal"
+                                    onClick={() => setEditingProduct(p)}
                             >
                                 Sửa
                             </button>
-                            <button
-                                className="btn btn-danger btn-sm"
-                                onClick={() => handleDeleteProduct(p.id)}
+                            <button className="btn btn-danger btn-sm"
+                                    onClick={() => handleDeleteProduct(p.id)}
                             >
                                 Xóa
                             </button>
@@ -188,79 +172,47 @@ export default function ProductManager() {
             </table>
 
             {/* Modal sửa sản phẩm */}
-            <div
-                className="modal fade"
-                id="editModal"
-                tabIndex="-1"
-                aria-hidden="true"
-            >
+            <div className="modal fade" id="editModal" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         {editingProduct && (
                             <>
                                 <div className="modal-header">
                                     <h5 className="modal-title">Sửa sản phẩm</h5>
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="modal"
-                                    ></button>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal">
+                                    </button>
                                 </div>
                                 <div className="modal-body">
-                                    <input
-                                        className="form-control mb-2"
-                                        value={editingProduct.name}
-                                        onChange={(e) =>
-                                            setEditingProduct({
-                                                ...editingProduct,
-                                                name: e.target.value,
-                                            })
-                                        }
+                                    <input className="form-control mb-2"
+                                           value={editingProduct.name}
+                                           onChange={(e) =>
+                                               setEditingProduct({...editingProduct, name: e.target.value,})}
                                     />
-                                    <input
-                                        className="form-control mb-2"
-                                        value={editingProduct.description}
-                                        onChange={(e) =>
-                                            setEditingProduct({
-                                                ...editingProduct,
-                                                description: e.target.value,
-                                            })
-                                        }
+                                    <input className="form-control mb-2" value={editingProduct.description}
+                                           onChange={(e) =>
+                                               setEditingProduct({...editingProduct, description: e.target.value,})}
                                     />
-                                    <input
-                                        type="number"
-                                        className="form-control mb-2"
-                                        value={editingProduct.price}
-                                        onChange={(e) =>
-                                            setEditingProduct({
-                                                ...editingProduct,
-                                                price: e.target.value,
-                                            })
-                                        }
+                                    <input type="number"
+                                           className="form-control mb-2"
+                                           value={editingProduct.price}
+                                           onChange={(e) =>
+                                               setEditingProduct({...editingProduct, price: e.target.value,})}
                                     />
-                                    <input
-                                        type="number"
-                                        className="form-control mb-2"
-                                        value={editingProduct.stock}
-                                        onChange={(e) =>
-                                            setEditingProduct({
-                                                ...editingProduct,
-                                                stock: e.target.value,
-                                            })
-                                        }
+                                    <input type="number" className="form-control mb-2"
+                                           value={editingProduct.stock}
+                                           onChange={(e) =>
+                                               setEditingProduct({...editingProduct, stock: e.target.value,})}
                                     />
                                 </div>
                                 <div className="modal-footer">
-                                    <button
-                                        className="btn btn-secondary"
-                                        data-bs-dismiss="modal"
+                                    <button className="btn btn-secondary"
+                                            data-bs-dismiss="modal"
                                     >
                                         Đóng
                                     </button>
-                                    <button
-                                        className="btn btn-primary"
-                                        data-bs-dismiss="modal"
-                                        onClick={handleUpdateProduct}
+                                    <button className="btn btn-primary"
+                                            data-bs-dismiss="modal"
+                                            onClick={handleUpdateProduct}
                                     >
                                         Lưu
                                     </button>

@@ -85,6 +85,7 @@ export async function createOrder(userId, items) {
         throw new Error("items phải là mảng có ít nhất 1 sản phẩm");
     }
 
+    const user = getCurrentUser(); // lấy thông tin user hiện tại
     const formattedItems = items.map(item => ({
         productId: item.id,
         name: item.name,
@@ -94,8 +95,9 @@ export async function createOrder(userId, items) {
 
     const newOrder = {
         userId,
+        userName: user?.name || "Người dùng",
         items: formattedItems,
-        status: "pending", // mặc định đang chờ
+        status: "pending",
         createdAt: new Date().toISOString()
     };
 
@@ -103,26 +105,26 @@ export async function createOrder(userId, items) {
     return res.data;
 }
 
-export async function updateOrderStatus(orderId, status) {
-    const res = await axios.patch(`${API_URL}/orders/${orderId}`, { status });
+export async function updateOrderStatus(orderId, status, extraData = {}) {
+    // Lấy đơn hàng hiện tại
+    const res = await getOrders({ role: "admin" }); // hoặc get cụ thể order
+    const order = res.find(o => o.id === orderId);
 
-    // Nếu giao hàng thành công thì trừ stock sản phẩm
-    if (status === "delivered") {
-        const order = res.data;
+    // Nếu hủy đơn do user => phục hồi tồn kho
+    if (status === "cancelled" && extraData.cancelledBy === "user") {
         for (const item of order.items) {
             const product = await getProductById(item.productId);
             await updateProduct(item.productId, {
-                stock: product.stock - item.quantity
+                stock: product.stock + item.quantity
             });
         }
     }
 
-    return res.data;
+    const updateRes = await axios.patch(`${API_URL}/orders/${orderId}`, {
+        status,
+        ...extraData,
+    });
+    return updateRes.data;
 }
 
-export async function cancelOrder(orderId) {
-    const res = await axios.patch(`${API_URL}/orders/${orderId}`, {
-        status: "cancelled"
-    });
-    return res.data;
-}
+

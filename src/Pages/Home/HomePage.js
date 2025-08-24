@@ -35,6 +35,7 @@ export default function HomePage() {
     const handleBuy = async (product) => {
         if (!user) {
             alert("Bạn cần đăng nhập để mua hàng");
+            navigate('/login')
             return;
         }
 
@@ -45,13 +46,9 @@ export default function HomePage() {
 
         try {
             // 1. Tạo order mới cho user
-            const newOrder = {
-                userId: user.id,
-                items: [{ productId: product.id, quantity: 1 }],
-                status: "pending",
-                createdAt: new Date().toISOString()
-            };
-            await createOrder(newOrder);
+            await createOrder(user.id, [
+                { id: product.id, name: product.name, price: product.price, quantity: 1 }
+            ]);
 
             // 2. Giảm tồn kho sản phẩm
             const updatedProduct = {
@@ -62,7 +59,6 @@ export default function HomePage() {
 
             // 3. Refresh lại danh sách
             fetchProducts();
-
             alert("Đặt hàng thành công!");
         } catch (error) {
             console.error("Lỗi mua sản phẩm:", error);
@@ -92,23 +88,20 @@ export default function HomePage() {
 
                                     {user?.role === "admin" ? (
                                         <>
-                                            <button
-                                                className="btn btn-warning btn-sm me-2"
-                                                onClick={() => navigate(`/edit-product/${product.id}`)}
+                                            <button className="btn btn-warning btn-sm me-2"
+                                                    onClick={() => navigate(`/product/${product.id}`)}
                                             >
                                                 Sửa
                                             </button>
-                                            <button
-                                                className="btn btn-danger btn-sm"
-                                                onClick={() => handleDelete(product.id)}
+                                            <button className="btn btn-danger btn-sm"
+                                                    onClick={() => handleDelete(product.id)}
                                             >
                                                 Xóa
                                             </button>
                                         </>
                                     ) : (
-                                        <button
-                                            className="btn btn-success btn-sm"
-                                            onClick={() => handleBuy(product)}
+                                        <button className="btn btn-success btn-sm"
+                                                onClick={() => handleBuy(product)}
                                         >
                                             Mua ngay
                                         </button>
