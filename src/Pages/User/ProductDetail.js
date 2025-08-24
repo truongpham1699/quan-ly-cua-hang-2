@@ -1,3 +1,4 @@
+// src/User/ProductDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getProductById, createOrder, getCurrentUser, updateProduct } from "../../Service/Service";

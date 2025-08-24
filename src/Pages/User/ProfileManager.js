@@ -1,3 +1,4 @@
+// src/User/ProfileManager.js
 import React, { useState } from "react";
 import { getCurrentUser, updateProfile, logout } from "../../Service/Service";
 import { useNavigate } from "react-router-dom";
